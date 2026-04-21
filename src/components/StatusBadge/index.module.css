@@ -1,3 +1,50 @@
-.statusBadge {
-  /* StatusBadge styles */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1rem;
+  border-radius: 6px;
+  font-weight: 700;
+  text-transform: capitalize;
+  min-width: 104px;
+  justify-content: center;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.paid {
+  background: rgba(51, 214, 159, 0.1);
+  color: #33d69f;
+}
+
+.paid .dot {
+  background: #33d69f;
+}
+
+.pending {
+  background: rgba(255, 143, 0, 0.1);
+  color: #ff8f00;
+}
+
+.pending .dot {
+  background: #ff8f00;
+}
+
+.draft {
+  background: rgba(55, 59, 83, 0.1);
+  color: var(--text);
+}
+
+.draft .dot {
+  background: var(--gray);
+}
+
+@media (max-width: 600px) {
+  .badge {
+    padding: 0.5rem;
+  }
 }

@@ -1,3 +1,135 @@
-.invoiceCard {
-  /* InvoiceCard styles */
+.card {
+  background: rgb(255, 255, 255);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.card:hover {
+  border-color: var(--prim-purple);
+}
+
+.topRow,
+.bottomRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 5rem;
+}
+
+.topRow {
+  margin-bottom: 0rem;
+}
+
+.topRow h3 {
+  font-size: 1.1rem;
+}
+
+.topRow h3 span {
+  color: #7e88c3;
+}
+
+.client{
+  display: none;
+}
+
+.dueextra,.clientextra {
+  color: #7e88c3;
+  font-size: 0.85rem;
+}
+
+.client,
+.due {
+  color: var(--gray);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.due{
+  display: none;
+}
+
+.total {
+  font-size: 1.2rem;
+}
+
+.left, .right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.arrow {
+  color: #7c5dfa;
+}
+
+
+@media (max-width: 640px) {
+  .card {
+    flex-direction: column;
+  }
+
+  .topRow{
+    width: 100%;
+    margin-bottom: 1.1rem;
+    align-items: center;
+  }
+
+  .bottomRow{
+    width: 100%;
+    align-items: flex-end;
+    gap: 0rem;
+  }
+
+  .client {
+    display: block;
+  }
+
+  .dueextra {
+    display: none;
+  }
+
+  .left {
+    flex-direction: column;
+    align-items: center;
+    gap: 0rem;
+  }
+
+  .total {
+    margin-top: 0.4rem;
+  }
+
+  .due {
+    display: block;
+  }
+
+  .clientextra {
+    display: none;
+  }
+
+  .right {
+    margin-top: 1rem;
+  }
+
+  .arrow {
+    display: none;
+  }
+}
+
+@media (max-width: 360px) {
+  .card {
+    padding: 0.5rem;
+  }
+
+  .due{
+    font-size: 0.7rem;
+  }
+  .total {
+    font-size: 0.9rem;
+  }
 }
