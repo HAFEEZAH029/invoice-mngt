@@ -1,3 +1,130 @@
 .header {
-  /* Header styles */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem 0 4rem;
+  gap: 1rem;
+}
+
+.header h1 {
+  font-size: 1.7rem;
+  margin-bottom: -0.5rem;
+}
+
+.header p {
+  color: #888eb0;
+  font-size: 0.9rem;
+}
+
+.actions {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.filterBtn {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.filterBtn .icon {
+  color: var(--prim-purple);
+}
+
+.desktop {
+  display: inline;
+}
+
+.mobile {
+  display: none;
+}
+
+.mobiletext {
+  display: none;
+}
+
+.desktext {
+  display: inline;
+}
+
+.newBtn {
+  background: #7c5dfa;
+  color: white;
+  border: none;
+  border-radius: 999px;
+  padding: 0.8rem 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.newBtn .icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: white;
+  color: var(--prim-purple);
+  display: grid;
+  place-items: center;
+}
+
+.newBtn:hover {
+  background: #9277ff;
+}
+
+@media (max-width: 480px) {
+
+  .header h1 {
+    font-size: 1.3rem;
+  }
+
+  .actions {
+    gap: 1rem;
+  }
+
+  .filterBtn {
+    font-size: 0.9rem;
+  }
+
+   .desktop {
+    display: none;
+  }
+
+  .mobile {
+    display: inline;
+  }
+
+  .mobiletext {
+    display: inline-block;
+  }
+  .desktext {
+    display: none;
+  }
+
+  .newBtn {
+    padding: 0.8rem;
+  }
+  .newBtn span {
+    width: 20px;
+    height: 20px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .newBtn {
+    padding: 0.5rem;
+  }
+
+  .mobiletext{
+    margin-right: 0.5rem;
+  }
 }

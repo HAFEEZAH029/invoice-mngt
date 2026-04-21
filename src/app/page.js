@@ -1,7 +1,17 @@
-export default function Home() {
+import Sidebar from "@/components/Sidebar/index";
+import Header from "@/components/Header/index";
+import InvoiceList from "@/components/InvoiceList/index";
+import styles from "./page.module.css";
+
+export default function HomePage() {
   return (
-    <div>
-      <h1>Welcome to Invoice Management App</h1>
-    </div>
+    <main className={styles.app}>
+      <Sidebar />
+
+      <section className={styles.content}>
+        <Header />
+        <InvoiceList />
+      </section>
+    </main>
   );
 }

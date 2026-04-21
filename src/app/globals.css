@@ -12,6 +12,11 @@ html {
   font-size: 16px;
 }
 
+[data-theme="dark"] {
+  --bg: #141625;
+  --text: #ffffff;
+}
+
 body {
   min-height: 100vh;
   font-family: var(--font-league-spartan), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
@@ -22,7 +27,7 @@ body {
 
 /* CSS Variables for Light Theme */
 :root {
-  --bg-prim-purple: #7c5dfa;
+  --prim-purple: #7c5dfa;
   --bg-sec-purple: #9277ff;
   --deep-blue: #1e2139;
   --navy: #252945;

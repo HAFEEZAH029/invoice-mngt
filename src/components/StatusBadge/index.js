@@ -1,7 +1,10 @@
-export default function StatusBadge() {
+import styles from "./index.module.css";
+
+export default function StatusBadge({ status }) {
   return (
-    <div>
-      StatusBadge
-    </div>
+    <span className={`${styles.badge} ${styles[status]}`}>
+      <span className={styles.dot}></span>
+      {status}
+    </span>
   );
 }
