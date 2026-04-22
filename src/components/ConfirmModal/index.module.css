@@ -8,7 +8,7 @@
   position: absolute;
   inset: 0;
   border: none;
-  background: rgba(0,0,0,.55);
+  background: var(--modal-overlay);
 }
 
 .modal {
@@ -17,17 +17,19 @@
   max-width: 480px;
   width: calc(100% - 2rem);
   margin: 12vh auto 0;
-  background: white;
+  background: var(--modal-surface-bg);
+  color: var(--modal-surface-text);
   border-radius: 8px;
   padding: 2rem;
 }
 
 .modal h2 {
   margin-bottom: 1rem;
+  color: var(--modal-surface-text);
 }
 
 .modal p {
-  color: #7e88c3;
+  color: var(--modal-muted-text);
   line-height: 1.6;
 }
 
@@ -51,10 +53,19 @@
 }
 
 .cancel {
-  background: #f9fafe;
+  background: var(--modal-cancel-bg);
+  color: var(--modal-cancel-text);
 }
 
 .delete {
-  background: #ec5757;
-  color: white;
+  background: var(--modal-delete-bg);
+  color: var(--modal-delete-text);
+}
+
+.cancel:hover {
+  background: var(--modal-cancel-hover);
+}
+
+.delete:hover {
+  background: var(--modal-delete-hover);
 }
