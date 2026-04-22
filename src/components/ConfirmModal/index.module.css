@@ -1,0 +1,60 @@
+.wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  border: none;
+  background: rgba(0,0,0,.55);
+}
+
+.modal {
+  position: relative;
+  z-index: 2;
+  max-width: 480px;
+  width: calc(100% - 2rem);
+  margin: 12vh auto 0;
+  background: white;
+  border-radius: 8px;
+  padding: 2rem;
+}
+
+.modal h2 {
+  margin-bottom: 1rem;
+}
+
+.modal p {
+  color: #7e88c3;
+  line-height: 1.6;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: .75rem;
+  margin-top: 2rem;
+}
+
+.actions button {
+  border: none;
+  border-radius: 999px;
+  padding: 1rem 1.4rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.actions button:active {
+  transform: scale(.98);
+}
+
+.cancel {
+  background: #f9fafe;
+}
+
+.delete {
+  background: #ec5757;
+  color: white;
+}
