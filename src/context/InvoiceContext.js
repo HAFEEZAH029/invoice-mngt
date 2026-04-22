@@ -1,7 +1,6 @@
 'use client';
 
 import { createContext, useContext, useState, useEffect } from 'react';
-import { mockInvoices } from '@/lib/data';
 
 const InvoiceContext = createContext();
 
@@ -23,9 +22,7 @@ export function InvoiceProvider({ children }) {
         JSON.parse(stored)
       );
     } else {
-      setInvoices(
-        mockInvoices
-      );
+      setInvoices([]);
     }
 
     setLoaded(true);

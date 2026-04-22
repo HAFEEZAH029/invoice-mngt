@@ -18,6 +18,9 @@ export default function DetailsPage ({invoice}) {
     const [openDelete, setOpenDelete] = useState(false);
     const router = useRouter();
 
+  function displayValue(value) {
+    return value || "Not set";
+  }
 
   function formatCurrency(amount) {
     return `£ ${amount.toFixed(2)}`;
@@ -68,10 +71,10 @@ return (
                      <p className={styles.card__description}>{invoice.description}</p>
                 </div>
                 <address className={styles.card__senderAddress}>
-                    <span>{invoice.senderAddress.street}</span>
-                    <span>{invoice.senderAddress.city}</span>
-                    <span>{invoice.senderAddress.postCode}</span>
-                    <span>{invoice.senderAddress.country}</span>
+                    <span>{invoice.senderAddress?.street}</span>
+                    <span>{invoice.senderAddress?.city}</span>
+                    <span>{invoice.senderAddress?.postCode}</span>
+                    <span>{invoice.senderAddress?.country}</span>
                 </address>
             </div>
 
@@ -81,11 +84,11 @@ return (
                 <div className={styles.card__metaGroup}>
                     <div className={styles.card__metaItem}>
                         <p className={styles.card__metaLabel}>Invoice Date</p>
-                        <p className={styles.card__metaValue}>{invoice.createdAt}</p>
+                        <p className={styles.card__metaValue}>{displayValue(invoice.createdAt)}</p>
                     </div>
                     <div className={styles.card__metaItem}>
                         <p className={styles.card__metaLabel}>Payment Due</p>
-                        <p className={styles.card__metaValue}>{invoice.dueDate}</p>
+                        <p className={styles.card__metaValue}>{displayValue(invoice.dueDate)}</p>
                     </div>
                 </div>
 
@@ -95,10 +98,10 @@ return (
                        <p className={styles.card__metaLabel}>Bill To</p>
                        <p className={styles.card__metaValue}>{invoice.clientName}</p>
                        <address className={styles.card__clientAddress}>
-                            <span>{invoice.clientAddress.street}</span>
-                            <span>{invoice.clientAddress.city}</span>
-                            <span>{invoice.clientAddress.postCode}</span>
-                            <span>{invoice.clientAddress.country}</span>
+                            <span>{invoice.clientAddress?.street}</span>
+                            <span>{invoice.clientAddress?.city}</span>
+                            <span>{invoice.clientAddress?.postCode}</span>
+                            <span>{invoice.clientAddress?.country}</span>
                         </address>
                     </div>
                 </div>
@@ -122,7 +125,7 @@ return (
                     <span className={styles.card__itemsRow__total}>Total</span>
                 </div>
 
-                {invoice.items.map((item) => (
+                {invoice.items?.map((item) => (
                 <div key={item.name} className={styles.card__itemsRow}>
                        {/* Desktop row */}
                     <span className={styles.card__itemName}>{item.name}</span>
@@ -149,11 +152,28 @@ return (
 
                 {/* Mobile bottom actions */}
         <div className={styles.mobileActions}>
-            <button className={styles.btn__edit} onClick={() => openEdit(invoice)}>
+            <button
+                className={styles.btn__edit}
+                onClick={() => openEdit(invoice)}
+                disabled={invoice.status === "paid"}
+            >
                 Edit
             </button>
-            <button className={styles.btn__delete}>Delete</button>
-            <button className={styles.btn__markPaid}>Mark as Paid</button>
+            <button
+                className={styles.btn__delete}
+                onClick={() => setOpenDelete(true)}
+            >
+                Delete
+            </button>
+            <button
+                className={styles.btn__markPaid}
+                onClick={() => markAsPaid(invoice.id)}
+                disabled={invoice.status === "paid" || invoice.status === "draft"}
+            >
+                {invoice.status === "paid"
+                    ? "Paid"
+                    : "Mark as Paid"}
+            </button>
         </div>
 
     </main>

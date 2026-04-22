@@ -3,6 +3,7 @@
 import { useInvoices } from "@/context/InvoiceContext";
 import InvoiceCard from "../InvoiceCard/index";
 import EmptyState from "../EmptyState/index";
+import styles from "./index.module.css";
 
 export default function InvoiceList() {
   const { filteredInvoices, loaded, invoices } = useInvoices();
@@ -15,13 +16,11 @@ export default function InvoiceList() {
     return <EmptyState />;
   }
 
-  if (filteredInvoices.length === 0) {
+ if (filteredInvoices.length === 0) {
     return (
-      <section>
-        <p>
-          No invoices match the selected filter.
-        </p>
-      </section>
+      <p className={styles.noResults}>
+        No invoices match the selected filter.
+      </p>
     );
   }
 
