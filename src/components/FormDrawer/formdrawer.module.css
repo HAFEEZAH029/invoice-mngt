@@ -1,0 +1,50 @@
+.wrapper {
+  position: fixed;
+  inset: 72px 0 0 0;
+  z-index: 1000;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  border: none;
+  background: var(--form-overlay);
+}
+
+.drawer {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  height: 100%;
+  background: var(--form-surface-bg);
+  color: var(--form-surface-text);
+  overflow-y: auto;
+  padding: 2rem 1.5rem;
+  animation: slideIn .25s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (min-width: 768px) {
+  .drawer {
+    border-radius: 0 20px 20px 0;
+    padding: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .wrapper {
+    inset: 0 0 0 103px;
+  }
+
+  .drawer {
+    height: 100vh;
+  }
+}

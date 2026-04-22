@@ -1,3 +1,144 @@
-.invoiceForm {
-  /* InvoiceForm styles */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.form h2 {
+  margin-bottom: 1rem;
+  color: var(--form-surface-text);
+}
+
+.form h4 {
+  color: var(--form-heading-accent);
+  margin-top: 1rem;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  font-size: .85rem;
+  color: var(--form-muted-text);
+  min-width: 0;
+}
+
+.input,
+.select {
+  width: 100%;
+  height: 48px;
+  border: 1px solid var(--form-control-border);
+  border-radius: 4px;
+  padding: 0 .9rem;
+  font-weight: 700;
+  box-sizing: border-box;
+  min-width: 0;
+  background: var(--form-control-bg);
+  color: var(--form-control-text);
+}
+
+.input:focus,
+.select:focus {
+  outline: none;
+  border-color: var(--form-control-focus);
+}
+
+.input::placeholder {
+  color: var(--form-control-placeholder);
+}
+
+.select {
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--form-heading-accent) 50%),
+    linear-gradient(135deg, var(--form-heading-accent) 50%, transparent 50%);
+  background-position:
+    calc(100% - 20px) calc(50% - 2px),
+    calc(100% - 15px) calc(50% - 2px);
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+
+.grid2 {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.grid3 {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.footer {
+  position: sticky;
+  bottom: -2rem;
+  background: var(--form-surface-bg);
+  padding: 2rem 0 1rem;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer button {
+  border: none;
+  border-radius: 999px;
+  padding: 1rem 1.4rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.footer .discard {
+  background: var(--discard-bg);
+  color: var(--form-button-secondary-text);
+}
+
+.footer .draft {
+  background: var(--form-button-tertiary-bg);
+  color: var(--form-button-tertiary-text);
+}
+
+.footer .save {
+  background: var(--prim-purple);
+  color: #ffffff;
+}
+
+.footer button:active {
+  transform: scale(.98);
+}
+
+.footer div {
+  display: flex;
+  gap: .8rem;
+}
+
+.error {
+  color: var(--error);
+  font-size: .75rem;
+  margin-top: .25rem;
+}
+
+.input.error {
+  border-color: var(--error);
+}
+
+.footer .discard:hover {
+  background: var(--form-button-secondary-hover);
+}
+
+.footer .draft:hover,
+.footer .save:hover {
+  filter: brightness(1.08);
+}
+
+@media (min-width: 768px) {
+  .grid2 {
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .grid3 {
+    grid-template-columns: repeat(3,1fr);
+  }
 }

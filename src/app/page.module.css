@@ -1,6 +1,6 @@
 .app {
   min-height: 100vh;
-  background: #f8f8f8;
+  background: var(--details-page-bg);
   color: var(--text);
 }
 

@@ -1,6 +1,8 @@
 import { Geist, Geist_Mono, League_Spartan } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
+import DrawerMount from "@/components/FormDrawer/DrawerMount";
+import Sidebar from "@/components/Sidebar/index";
 
 
 const leagueSpartan = League_Spartan({
@@ -29,7 +31,9 @@ export default function RootLayout({ children }) {
     <html lang="en" className={`${leagueSpartan.variable} ${geistSans.variable} ${geistMono.variable}`}>
       <body>
         <Providers>
-          {children}
+          <Sidebar />
+            <DrawerMount />
+              {children}
         </Providers>
       </body>
     </html>
