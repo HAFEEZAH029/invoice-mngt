@@ -3,6 +3,8 @@
 import { FaMoon, FaSun, FaUserCircle } from "react-icons/fa";
 import { useTheme } from "@/context/ThemeContext";
 import styles from "./index.module.css";
+import Image from "next/image";
+import logo from "../../../public/logo.png";
 
 export default function Sidebar() {
   const { theme, toggleTheme } = useTheme();
@@ -10,7 +12,7 @@ export default function Sidebar() {
   return (
     <aside className={styles.sidebar}>
       <div className={styles.logo}>
-        <img src="/logo.png" alt="Logo" width={40} height={40} />
+        <Image src={logo} alt="Logo" width={40} height={40} />
       </div>
 
       <div className={styles.bottom}>
