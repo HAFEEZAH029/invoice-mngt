@@ -5,12 +5,7 @@
 }
 
 .illustration {
-  width: 180px;
-  height: 150px;
-  margin: 0 auto 3rem;
-  background: linear-gradient(135deg, #7c5dfa, #9277ff);
-  border-radius: 20px;
-  opacity: 0.15;
+  
 }
 
 .empty h2 {

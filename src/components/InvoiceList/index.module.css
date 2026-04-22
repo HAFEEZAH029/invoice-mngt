@@ -1,3 +1,5 @@
-.invoiceList {
-  /* InvoiceList styles */
+.noResults {
+  text-align: center;
+  margin-top: 8rem;
+  color: var(--text-primary);
 }

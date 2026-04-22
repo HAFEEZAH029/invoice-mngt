@@ -63,6 +63,7 @@ body {
   --form-heading-accent: #7c5dfa;
   --form-control-bg: #ffffff;
   --form-control-border: #dfe3fa;
+  --form-control-hover: #7c5dfa;
   --form-control-text: #0c0e16;
   --form-control-placeholder: #888eb0;
   --form-control-focus: #7c5dfa;
@@ -71,6 +72,16 @@ body {
   --form-button-tertiary-bg: #1e2139;
   --form-button-tertiary-text: #7e88c3;
   --form-overlay: rgba(0, 0, 0, 0.55);
+  --modal-surface-bg: #ffffff;
+  --modal-surface-text: #0c0e16;
+  --modal-muted-text: #7e88c3;
+  --modal-overlay: rgba(0, 0, 0, 0.55);
+  --modal-cancel-bg: #f9fafe;
+  --modal-cancel-text: #7e88c3;
+  --modal-cancel-hover: #dfe3fa;
+  --modal-delete-bg: #ec5757;
+  --modal-delete-text: #ffffff;
+  --modal-delete-hover: #ff9797;
 }
 
 /* Dark Theme Variables */
@@ -107,6 +118,7 @@ body {
   --form-heading-accent: #9277ff;
   --form-control-bg: #252945;
   --form-control-border: #252945;
+  --form-control-hover: #9277ff;
   --form-control-text: #ffffff;
   --form-control-placeholder: #888eb0;
   --form-control-focus: #7c5dfa;
@@ -115,6 +127,16 @@ body {
   --form-button-tertiary-bg: #252945;
   --form-button-tertiary-text: #dfe3fa;
   --form-overlay: rgba(0, 0, 0, 0.72);
+  --modal-surface-bg: #252945;
+  --modal-surface-text: #ffffff;
+  --modal-muted-text: #dfe3fa;
+  --modal-overlay: rgba(0, 0, 0, 0.78);
+  --modal-cancel-bg: #252945;
+  --modal-cancel-text: #dfe3fa;
+  --modal-cancel-hover: #353b67;
+  --modal-delete-bg: #ec5757;
+  --modal-delete-text: #ffffff;
+  --modal-delete-hover: #ff9797;
 }
 
 body {

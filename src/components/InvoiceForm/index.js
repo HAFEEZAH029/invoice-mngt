@@ -11,6 +11,7 @@ import { formatDate } from "@/lib/formatDate";
 import { calculateDueDate } from "@/lib/calculateduedate";
 import { validateDraft } from "@/lib/validateDraft";
 import { getInitialItems, getInitialFormData } from "@/lib/helpers";
+import { FaCalendarAlt, FaChevronDown } from "react-icons/fa";
 
 
 
@@ -28,6 +29,15 @@ export default function InvoiceForm({ mode, invoice }) {
   );
   const [errors, setErrors] = useState({});
 
+  function getControlClass(errorKey, baseClass = "input") {
+    return [
+      styles[baseClass],
+      errors[errorKey] ? styles.errorInput : "",
+    ]
+      .filter(Boolean)
+      .join(" ");
+  }
+
 
 
   function handleChange(e) {
@@ -40,6 +50,16 @@ export default function InvoiceForm({ mode, invoice }) {
   }
 
   function createInvoice(status) {
+    const createdAt = formData.createdAt
+      ? formatDate(formData.createdAt)
+      : "";
+    const dueDate = formData.createdAt
+      ? calculateDueDate(
+          formData.createdAt,
+          formData.paymentTerms
+        )
+      : "";
+
     const newInvoice = {
       id: generateInvoiceId(),
       clientName: formData.clientName,
@@ -47,8 +67,8 @@ export default function InvoiceForm({ mode, invoice }) {
       description: formData.description,
       paymentTerms: formData.paymentTerms,
       status,
-      createdAt:formatDate(formData.createdAt),
-      dueDate: calculateDueDate(formData.createdAt, formData.paymentTerms),
+      createdAt,
+      dueDate,
       amount: items.reduce(
         (sum, item) => sum + item.total, 0
       ),
@@ -106,17 +126,29 @@ function handleDraftSave() {
   setErrors({});
 
   if (mode === "edit") {
+    const nextStatus =
+      invoice.status === "draft"
+        ? "pending"
+        : invoice.status;
+    const createdAt = formData.createdAt
+      ? formatDate(formData.createdAt)
+      : "";
+    const dueDate = formData.createdAt
+      ? calculateDueDate(
+          formData.createdAt,
+          formData.paymentTerms
+        )
+      : "";
+
     editInvoice({
       ...invoice,
       clientName: formData.clientName,
       clientEmail: formData.clientEmail,
       description: formData.description,
       paymentTerms: formData.paymentTerms,
-      createdAt: formatDate(formData.createdAt),
-      dueDate: calculateDueDate(
-        formData.createdAt,
-        formData.paymentTerms
-      ),
+      status: nextStatus,
+      createdAt,
+      dueDate,
       senderAddress: {
         street: formData.fromAddress,
         city: formData.fromCity,
@@ -157,7 +189,7 @@ function handleDraftSave() {
 
       <label className={styles.label}>
         Street Address
-        <input className={styles.input} type="text" name="fromAddress" value={formData.fromAddress} onChange={handleChange} required />
+        <input className={getControlClass("fromAddress")} type="text" name="fromAddress" value={formData.fromAddress} onChange={handleChange} required />
         {errors.fromAddress && (
           <p className={styles.error}>
             {errors.fromAddress}
@@ -166,9 +198,9 @@ function handleDraftSave() {
       </label>
 
       <div className={styles.grid3}>
-        <label className={styles.label}>
+        <label className={styles.label} htmlFor="fromCity">
           City
-          <input className={styles.input} type="text" name="fromCity" value={formData.fromCity} onChange={handleChange} required />
+          <input className={getControlClass("fromCity")} type="text" name="fromCity" id="fromCity" value={formData.fromCity} onChange={handleChange} required />
           {errors.fromCity && (
             <p className={styles.error}>
               {errors.fromCity}
@@ -176,9 +208,9 @@ function handleDraftSave() {
           )}
         </label>
 
-        <label className={styles.label}>
+        <label className={styles.label} htmlFor="fromPostCode">
           Post Code
-          <input className={styles.input} type="text" name="fromPostCode" value={formData.fromPostCode} onChange={handleChange} required />
+          <input className={getControlClass("fromPostCode")} type="text" name="fromPostCode" id="fromPostCode" value={formData.fromPostCode} onChange={handleChange} required />
           {errors.fromPostCode && (
             <p className={styles.error}>
               {errors.fromPostCode}
@@ -186,9 +218,9 @@ function handleDraftSave() {
           )}
         </label>
 
-        <label className={styles.label}>
+        <label className={styles.label} htmlFor="fromCountry">
           Country
-          <input className={styles.input} type="text" name="fromCountry" value={formData.fromCountry} onChange={handleChange} required />
+          <input className={getControlClass("fromCountry")} type="text" name="fromCountry" id="fromCountry" value={formData.fromCountry} onChange={handleChange} required />
           {errors.fromCountry && (
             <p className={styles.error}>
               {errors.fromCountry}
@@ -199,9 +231,9 @@ function handleDraftSave() {
 
       <h4>Bill To</h4>
 
-      <label className={styles.label}>
+      <label className={styles.label} htmlFor="clientName">
         Client&apos;s Name
-        <input className={styles.input} type="text" name="clientName" value={formData.clientName} onChange={handleChange} required />
+        <input className={getControlClass("clientName")} type="text" name="clientName" id="clientName" value={formData.clientName} onChange={handleChange} required />
         {errors.clientName && (
           <p className={styles.error}>
             {errors.clientName}
@@ -209,14 +241,9 @@ function handleDraftSave() {
         )}
       </label>
 
-      <label className={styles.label}>
+      <label className={styles.label} htmlFor="clientEmail">
         Client&apos;s Email
-        <input className={styles.input} type="email" name="clientEmail" value={formData.clientEmail} onChange={handleChange} required />
-        {errors.clientEmail && (
-          <p className={styles.error}>
-            {errors.clientEmail}
-          </p>
-        )}
+        <input className={getControlClass("clientEmail")} type="email" name="clientEmail" id="clientEmail" value={formData.clientEmail} onChange={handleChange} required />
         {errors.clientEmail && (
           <p className={styles.error}>
             {errors.clientEmail}
@@ -224,9 +251,9 @@ function handleDraftSave() {
         )}
       </label>
 
-      <label className={styles.label}>
+      <label className={styles.label} htmlFor="toAddress">
         Street Address
-        <input className={styles.input} type="text" name="toAddress" value={formData.toAddress} onChange={handleChange} required />
+        <input className={getControlClass("toAddress")} type="text" name="toAddress" id="toAddress" value={formData.toAddress} onChange={handleChange} required />
         {errors.toAddress && (
           <p className={styles.error}>
             {errors.toAddress}
@@ -235,9 +262,9 @@ function handleDraftSave() {
       </label>
 
       <div className={styles.grid3}>
-        <label className={styles.label}>
+        <label className={styles.label} htmlFor="toCity">
           City
-          <input className={styles.input} type="text" name="toCity" value={formData.toCity} onChange={handleChange} required />
+          <input className={getControlClass("toCity")} type="text" name="toCity" id="toCity" value={formData.toCity} onChange={handleChange} required />
           {errors.toCity && (
             <p className={styles.error}>
               {errors.toCity}
@@ -245,9 +272,9 @@ function handleDraftSave() {
           )}
         </label>
 
-        <label className={styles.label}>
+        <label className={styles.label} htmlFor="toPostCode">
           Post Code
-          <input className={styles.input} type="text" name="toPostCode" value={formData.toPostCode} onChange={handleChange} required />
+          <input className={getControlClass("toPostCode")} type="text" name="toPostCode" id="toPostCode" value={formData.toPostCode} onChange={handleChange} required />
           {errors.toPostCode && (
             <p className={styles.error}>
               {errors.toPostCode}
@@ -255,9 +282,9 @@ function handleDraftSave() {
           )}
         </label>
 
-        <label className={styles.label}>
+        <label className={styles.label} htmlFor="toCountry">
           Country
-          <input className={styles.input} type="text" name="toCountry" value={formData.toCountry} onChange={handleChange} required />
+          <input className={getControlClass("toCountry")} type="text" name="toCountry" id="toCountry" value={formData.toCountry} onChange={handleChange} required />
           {errors.toCountry && (
             <p className={styles.error}>
               {errors.toCountry}
@@ -267,9 +294,15 @@ function handleDraftSave() {
       </div>
 
       <div className={styles.grid2}>
-        <label className={styles.label}>
+        <label className={styles.label} htmlFor="invoiceDate">
           Invoice Date
-          <input className={styles.input} value={formData.createdAt} onChange={handleChange} name="createdAt" type="date" required />
+          <div className={styles.controlWrap}>
+            <input className={getControlClass("invoiceDate")} value={formData.createdAt} onChange={handleChange} name="createdAt" id="invoiceDate" type="date" required />
+            <FaCalendarAlt
+              className={`${styles.controlIcon} ${styles.dateIcon}`}
+              aria-hidden="true"
+            />
+          </div>
           {errors.invoiceDate && (
             <p className={styles.error}>
               {errors.invoiceDate}
@@ -278,14 +311,20 @@ function handleDraftSave() {
 
         </label>
 
-        <label className={styles.label}>
+        <label className={styles.label} htmlFor="paymentTerms">
           Payment Terms
-          <select className={styles.select} name="paymentTerms" value={formData.paymentTerms} onChange={handleChange} required>
-            <option value="1">Net 1 Day</option>
-            <option value="7">Net 7 Days</option>
-            <option value="14">Net 14 Days</option>
-            <option value="30">Net 30 Days</option>
-          </select>
+          <div className={styles.controlWrap}>
+            <select className={getControlClass("paymentTerms", "select")} name="paymentTerms" id="paymentTerms" value={formData.paymentTerms} onChange={handleChange} required>
+              <option value="1">Net 1 Day</option>
+              <option value="7">Net 7 Days</option>
+              <option value="14">Net 14 Days</option>
+              <option value="30">Net 30 Days</option>
+            </select>
+            <FaChevronDown
+              className={styles.controlIcon}
+              aria-hidden="true"
+            />
+          </div>
           {errors.paymentTerms && (
             <p className={styles.error}>
               {errors.paymentTerms}
@@ -294,9 +333,9 @@ function handleDraftSave() {
         </label>
       </div>
 
-      <label className={styles.label}>
+      <label className={styles.label} htmlFor="description">
         Project Description
-        <input className={styles.input} type="text" name="description" value={formData.description} onChange={handleChange} required />
+        <input className={getControlClass("description")} type="text" name="description" id="description" value={formData.description} onChange={handleChange} required />
         {errors.description && (
           <p className={styles.error}>
             {errors.description}
